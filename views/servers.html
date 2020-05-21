@@ -1,0 +1,26 @@
+<html>
+    <h3><i>Showing all servers in our database:</i></h3>
+    <table border="1">
+        <tr>
+            <th>Friendly Name</th>
+            <th>Cluster Name</th>
+            <th>DNS Status</th>
+            <th>Actions</th>
+        </tr>
+        {{range $idx, $server := .servers}}
+        <tr>
+            <td>{{$server.Name}}</td>
+            <td>{{$server.ClusterName}}</td>
+            {{if $server.AddedToRotation}}
+                <td>{{$server.Subdomain}}{{$.domain}}</td>
+                <form id="remove-{{$server.ID}}" name="remove-form" method="POST" action="servers/{{$server.ID}}/remove"></form>
+                <td><a href="servers/{{$server.ID}}/remove" onclick="event.preventDefault();document.getElementById('remove-{{$server.ID}}').submit();">Remove from rotation</a></td>
+            {{else}}
+                <td>NONE</td>
+                <form id="add-{{$server.ID}}" name="add-form" method="POST" action="servers/{{$server.ID}}/add"></form>
+                <td><a href="servers/{{$server.ID}}/add" onclick="event.preventDefault();document.getElementById('add-{{$server.ID}}').submit();">Add to rotation</a></td>
+            {{end}}
+        </tr>
+        {{end}}
+    </table>
+</html>

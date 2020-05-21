@@ -1,0 +1,19 @@
+<html>
+    <h3><i>Currently published DNS entries:</i></h3>
+    <table border="1">
+        <tr>
+            <th>Domain String</th>
+            <th>IP</th>
+            <th>Server Friendly Name</th>
+            <th>Cluster Name</th>
+        </tr>
+        {{range $idx, $entry := .dns_records}}
+        <tr>
+            <td>{{$entry.FQDN}}</td>
+            <td>{{$entry.IP}}</td>
+            <td>{{$entry.ServerName}}</td>
+            <td>{{$entry.ClusterName}}</td>
+        </tr>
+        {{end}}
+    </table>
+</html>
