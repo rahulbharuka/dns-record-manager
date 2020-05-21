@@ -1,1 +1,1 @@
-web: bin/vpn-server-mgmt
+web: bin/dns-record-manager
